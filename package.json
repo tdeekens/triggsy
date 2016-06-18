@@ -1,0 +1,44 @@
+{
+  "name": "triggsy",
+  "version": "0.0.0",
+  "description": "Triggers npm and bower installs on dependency changes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha 'test/**/*.test.js' --reporter spec",
+    "lint": "$(npm bin)/eslint .",
+    "ci": "npm run lint && npm run test"
+  },
+  "engines": {
+    "node": ">=4.2.0",
+    "npm": ">=2.11.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdeekens/triggsy.git"
+  },
+  "keywords": [
+    "npm",
+    "bower",
+    "dependency",
+    "updater",
+    "trigger",
+    "git",
+    "hook"
+  ],
+  "author": "Tobias Deekens <nerd@tdeekens.name> (http://tdeekens.name)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdeekens/triggsy/issues"
+  },
+  "homepage": "https://github.com/tdeekens/triggsy#readme",
+  "devDependencies": {
+    "eslint": "^2.13.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-react": "^5.2.2",
+    "mocha": "^2.5.3"
+  },
+  "dependencies": {}
+}
