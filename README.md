@@ -17,11 +17,13 @@ Triggsy aims to solve those issues by reducing the cost of running an `npm i` an
 
 ## CLI
 
-### `triggsy <package-manager>`
+### `triggsy <install | i>`
 
 Supported package managers are currently `npm` and `bower`.
 
-Run `triggsy npm` to run an `npm i` only if dependencies have changed or perform an early exit if not.
+Run `triggsy --npm` to run an `npm i` only if dependencies have changed or perform an early exit if not.
+
+You can also run all supported package managers by running `triggsy i --all`.
 
 ## Config
 
