@@ -9,16 +9,14 @@ const cli = meow(`
       $ triggsy <install | i>
 
     Options
-      -n, --npm  Install npm dependencies if needed
-      -b, --bower  Install npm dependencies if needed
+      --npm  Install npm dependencies if needed
+      --bower  Install npm dependencies if needed
       -a, --all  Install all if needed
 
     Examples
       $ triggsy i --bower
 `, {
   alias: {
-    n: 'npm',
-    b: 'bower',
     a: 'all'
   }
 });
