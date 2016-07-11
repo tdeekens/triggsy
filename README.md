@@ -27,12 +27,23 @@ You can also run all supported package managers by running `triggsy i --all`.
 
 ## Config
 
-The `.triggsyconfig` contains a dependency file mapping to an action.
+The `.triggsyrc` contains a dependency file mapping to an action.
 
 ```json
 {
-  "package.json": "npm i",
-  "bower.json": "bower i"
+  "npm": {
+      "triggers": [
+        "package.json",
+        "npm-shrinkwrap.json"
+      ],
+      "commands": ["prune", "i"]
+  },
+  "bower": {
+    "triggers": [
+      "bower.json"
+    ],
+    "commands": ["i"]
+  }
 }
 ```
 
