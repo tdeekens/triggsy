@@ -1,0 +1,15 @@
+{
+  "npm": {
+      "triggers": [
+        "package.json",
+        "npm-shrinkwrap.json"
+      ],
+      "commands": ["prune", "i"]
+  },
+  "bower": {
+    "triggers": [
+      "bower.json"
+    ],
+    "commands": ["i"]
+  }
+}
