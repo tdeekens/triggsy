@@ -58,7 +58,7 @@ The `.triggsy` file contains a dependency file mapping to an state.
 }
 ```
 
-Indicating that the state before running `triggsy npm` the last time the `package.json` resolved to `c219c4dc4b7ff6be7a7090459bc6d06a879a1577`. Whenever hashing the current `package.json` shows a difference the trigger from the `.triggsyconfig` will be run and the `.triggsy` state will be upadted.
+Indicating that the state before running `triggsy npm` the last time the `package.json` resolved to `c219c4dc4b7ff6be7a7090459bc6d06a879a1577`. Whenever hashing the current `package.json` shows a difference the trigger from the `.triggsyrc` will be run and the `.triggsy` state will be updated.
 
 ## Future Features
 
