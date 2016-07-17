@@ -1,62 +1,30 @@
 const chalk = require('chalk');
-const _ = require('lodash');
-const json = require('./lib/json');
-const binaries = require('./lib/binaries');
+const lib = require('./lib/index');
 
-/**
-function state(dependencyManifest) {
-  const crypto = require('crypto');
-  const manifest = fs.readFileSync(dependencyManifest);
-
-  return {
-    manifest: dependencyManifest,
-    state: crypto.createHash('sha1').update(manifest).digest('hex')
-  };
-}
-
-function updateLock(dependencyManifest, state) {
-  const states = fs.readFileSync('./.triggsy');
-
-  states[dependencyManifest] = state;
-
-  fs.writeFileSync('./.triggsy', states);
-}
-
-function shouldTriggerUpdate(dependencyManifest) {
-  const states = fs.readFileSync('./.triggsy');
-  const currentState = states[dependencyManifest];
-  const nextState = state(dependencyManifest);
-
-  if (
-    !currentState ||
-    currentState !== nextState
-  ) {
-    return {
-      manifest: dependencyManifest,
-      shouldUpdate: true
-    };
+function logCommandsToSpawn(commandsToSpawn) {
+  if (commandsToSpawn.length === 0) {
+    console.log(chalk.green('All dependencies are up to date.'));
+  } else {
+    console.log(chalk.yellow(`Spawning \`${commandsToSpawn.join(', ')}\`.`));
   }
 
-  return {
-    manifest: dependencyManifest,
-    shouldUpdate: false,
-    state: nextState
-  };
+  return commandsToSpawn;
 }
-**/
 
 function process(flags) {
-  json.fromFile('.triggsyrc').then((triggsyRc) => {
-    const isSupportedBinary = _.difference(Object.keys(flags), binaries(triggsyRc)).length === 0;
+  if (flags.all) {
+    console.log(chalk.yellow('Analysing all configured managers.'));
 
-    if (flags.all) {
-      console.log(chalk.yellow('Analysing all configured managers.'));
-    } else if (isSupportedBinary) {
-      console.log(chalk.yellow(`Analysing depdencies for \`${binaries(triggsyRc).join(', ')}\`.`));
-    } else {
-      console.log(chalk.yellow('No known manager specified in <.triggsyrc>.'));
-    }
-  });
+    lib.run(
+      '.triggsyrc', '.triggsy'
+    ).then(logCommandsToSpawn);
+  } else {
+    console.log(chalk.yellow('Analysing specified managers.'));
+
+    lib.run(
+      '.triggsyrc', '.triggsy', Object.keys(flags)
+    ).then(logCommandsToSpawn);
+  }
 }
 
 module.exports = {
